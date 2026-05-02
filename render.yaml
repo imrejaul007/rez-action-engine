@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: rez-action-engine
+    runtime: node
+    region: oregon
+    branch: main
+    autoDeploy: true
+    buildCommand: npm install && npm run build
+    startCommand: node dist/index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "4009"
+      - key: HEALTH_PORT
+        value: "4109"
+      - key: MONGODB_URI
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: INTERNAL_SERVICE_TOKENS_JSON
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: REZ_FEEDBACK_SERVICE_URL
+        sync: false
+      - key: NEXTABIZ_URL
+        sync: false
+      - key: REZ_EVENT_PLATFORM_URL
+        sync: false
